@@ -5,7 +5,7 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        // Если задаём массив и предпологаемое число вносимых значений
+        // Если задаём массив и предполагаемое число вносимых значений
         //double m = 100;
         //double n = 30;
 
