@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\(1) Никита\\Флешка\\Институт\\4 курс\\2 семестр\\вероятностные алгоритмы\\доклад\\Blum_Filter\\Blum_Filter\\Blum_Filter.csproj": {}
+    "C:\\(1) Никита\\Флешка\\Институт\\4 курс\\2 семестр\\вероятностные алгоритмы\\доклад\\программа\\Blium_Filter\\Blum_Filter\\Blum_Filter.csproj": {}
   },
   "projects": {
-    "C:\\(1) Никита\\Флешка\\Институт\\4 курс\\2 семестр\\вероятностные алгоритмы\\доклад\\Blum_Filter\\Blum_Filter\\Blum_Filter.csproj": {
+    "C:\\(1) Никита\\Флешка\\Институт\\4 курс\\2 семестр\\вероятностные алгоритмы\\доклад\\программа\\Blium_Filter\\Blum_Filter\\Blum_Filter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\(1) Никита\\Флешка\\Институт\\4 курс\\2 семестр\\вероятностные алгоритмы\\доклад\\Blum_Filter\\Blum_Filter\\Blum_Filter.csproj",
+        "projectUniqueName": "C:\\(1) Никита\\Флешка\\Институт\\4 курс\\2 семестр\\вероятностные алгоритмы\\доклад\\программа\\Blium_Filter\\Blum_Filter\\Blum_Filter.csproj",
         "projectName": "Blum_Filter",
-        "projectPath": "C:\\(1) Никита\\Флешка\\Институт\\4 курс\\2 семестр\\вероятностные алгоритмы\\доклад\\Blum_Filter\\Blum_Filter\\Blum_Filter.csproj",
+        "projectPath": "C:\\(1) Никита\\Флешка\\Институт\\4 курс\\2 семестр\\вероятностные алгоритмы\\доклад\\программа\\Blium_Filter\\Blum_Filter\\Blum_Filter.csproj",
         "packagesPath": "C:\\Users\\Nikita\\.nuget\\packages\\",
-        "outputPath": "C:\\(1) Никита\\Флешка\\Институт\\4 курс\\2 семестр\\вероятностные алгоритмы\\доклад\\Blum_Filter\\Blum_Filter\\obj\\",
+        "outputPath": "C:\\(1) Никита\\Флешка\\Институт\\4 курс\\2 семестр\\вероятностные алгоритмы\\доклад\\программа\\Blium_Filter\\Blum_Filter\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
