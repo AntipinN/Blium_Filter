@@ -113,7 +113,7 @@ internal class Program
             Console.WriteLine();
 
         }
-
+        Console.WriteLine("Программа завершена. Нажмите любую клавишу для закрытия.");
         Console.ReadKey();
     }
 
