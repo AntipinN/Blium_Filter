@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35219.272
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blum_Filter", "Blum_Filter\Blum_Filter.csproj", "{94950021-8491-424C-A03D-9D7A645BD2C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blum_Filter", "Blum_Filter\Blum_Filter.csproj", "{94950021-8491-424C-A03D-9D7A645BD2C9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Blum_Filter_Library", "Blum_Filter_Library\Blum_Filter_Library.csproj", "{647C9FB0-A46F-4AC9-BF72-6C80AFEC2291}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Prime_Numbers_Generator_Library", "Prime_Numbers_Generator_Library\Prime_Numbers_Generator_Library.csproj", "{9121C5FF-7F7E-4623-BBCF-BD79529DE8E6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Universal_Hash_Func_Generator", "Universal Hash Funk Generator\Universal_Hash_Func_Generator.csproj", "{BB5F76C2-A394-4C7B-A88C-F08A95297310}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{94950021-8491-424C-A03D-9D7A645BD2C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94950021-8491-424C-A03D-9D7A645BD2C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94950021-8491-424C-A03D-9D7A645BD2C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{647C9FB0-A46F-4AC9-BF72-6C80AFEC2291}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{647C9FB0-A46F-4AC9-BF72-6C80AFEC2291}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{647C9FB0-A46F-4AC9-BF72-6C80AFEC2291}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{647C9FB0-A46F-4AC9-BF72-6C80AFEC2291}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9121C5FF-7F7E-4623-BBCF-BD79529DE8E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9121C5FF-7F7E-4623-BBCF-BD79529DE8E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9121C5FF-7F7E-4623-BBCF-BD79529DE8E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9121C5FF-7F7E-4623-BBCF-BD79529DE8E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB5F76C2-A394-4C7B-A88C-F08A95297310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB5F76C2-A394-4C7B-A88C-F08A95297310}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB5F76C2-A394-4C7B-A88C-F08A95297310}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB5F76C2-A394-4C7B-A88C-F08A95297310}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

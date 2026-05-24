@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>Universal_Hash_Funk_Generator</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Prime_Numbers_Generator_Library\Prime_Numbers_Generator_Library.csproj" />
+	<ProjectReference Include="..\Blum_Filter_Library\Blum_Filter_Library.csproj" />
+  </ItemGroup>
+
+</Project>

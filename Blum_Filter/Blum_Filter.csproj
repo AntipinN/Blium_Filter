@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Blum_Filter_Library\Blum_Filter_Library.csproj" />
+    <ProjectReference Include="..\Universal Hash Funk Generator\Universal_Hash_Func_Generator.csproj" />
+  </ItemGroup>
+
 </Project>
