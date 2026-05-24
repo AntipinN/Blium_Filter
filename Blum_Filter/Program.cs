@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using Blum_Filter_Library;
 using Universal_Hash_Func_Generator;
+using System.Diagnostics;
+using System.Text;
 
 namespace Blum_Filter;
 internal class Program
@@ -19,9 +21,13 @@ internal class Program
         //Console.WriteLine($"Вероятность ложно положительного срабатывания не более {blum_Filter.e}");
 
         //Если задаём предпологаемое число значений и допустимую вероятность ложного положительного срабатывания
-        double m = 100.0;
-        double e = 2E-07;
-        BlumFilter blum_Filter = new BlumFilter(m, e, new Hash_Func_Generator());
+        Console.Write("Введите желаемое количество сохранённых значений: n = ");
+        double n = double.Parse(Console.ReadLine());
+
+        Console.Write("\nВведите желаемую вероятность коллизии (0 ; 1): e = ");
+        double e = double.Parse(Console.ReadLine());
+
+        BlumFilter blum_Filter = new BlumFilter(n, e, new Hash_Func_Generator());
         HashSet<int> list_Of_Added_Numbers = new HashSet<int>();
         Console.WriteLine($"Размер массива равен {blum_Filter.m}");
         Console.WriteLine($"Оптимальное число хеш функций равно {blum_Filter.k}");
@@ -34,7 +40,7 @@ internal class Program
             Console.WriteLine("3. Наглядно проверить существование элемента");
             Console.WriteLine("4. Вывести массив");
             Console.WriteLine("5. Показать все хэш функции");
-            Console.WriteLine("6. Автотест. Покажет совпадающие значения и выдаст вероятность по формуле (кол-во коллизий)/(размер инт 32)");
+            Console.WriteLine("6. Автотест. Покажет совпадающие значения и выдаст вероятность по формуле (кол-во коллизий)/(мощность множества ключей 2^31)");
             Console.WriteLine();
             string entered_value = Console.ReadLine();
             Console.WriteLine();
@@ -59,7 +65,7 @@ internal class Program
                             Console.WriteLine("Число уже было добавлено в массив. Пропускаю.");
                             break;
                         }
-                        if ((double)blum_Filter.number_added_items >= m)
+                        if ((double)blum_Filter.number_added_items >= n)
                         {
                             Console.WriteLine("Внимание, фильтр не рассчитан на большее количество значений.");
                             Console.WriteLine("Остановить внесение нового значения? [д/н]");
@@ -145,24 +151,34 @@ internal class Program
                     }
                 case "6":
                     {
+                        
                         Random rnd = new Random();
-                        for (int j = 0; (double)j < m; j++)
+                        for (int j = 0; j < n; j++)
                         {
                             int tmp = rnd.Next();
                             blum_Filter.Add_Array(tmp);
-                            Console.Write($"{tmp,12} ");
+                            //Console.Write($"{tmp,12} ");
                         }
                         Console.WriteLine();
-                        int counter = 0;
-                        for (int i = 0; i < int.MaxValue; i++)
-                        {
-                            if (blum_Filter.Сheck_element(i))
-                            {
-                                counter++;
-                                Console.Write($"{i,12} ");
-                            }
-                        }
-                        Console.WriteLine(((double)counter - m) * 1.0 / int.MaxValue);
+                        int counter = (int)(CountExistingElements(blum_Filter) - n);
+
+                        
+                        //for (int i = 0; i < int.MaxValue; i++)
+                        //{
+                        //    if (blum_Filter.Сheck_element(i))
+                        //    {
+                        //        counter++;
+                        //        //Console.Write($"{i,12} ");
+                        //    }
+                        //}
+                        //counter -= n;
+                        
+                        Console.WriteLine($"Вероятность коллизии в массиве длины m = {blum_Filter.m},\n" +
+                            $" количестве внесённых элементов n = {n},\n" +
+                            $"  мощности множества ключей 2^31\n" +
+                            $"    желаемой вероятности коллизии e = {e}\n " +
+                            $"     итоговая вероятность коллизии = {(counter) * 1.0 / int.MaxValue}" );
+                        
                         break;
                     }
                 default:
@@ -178,24 +194,52 @@ internal class Program
         Console.WriteLine("Нажмите любую кнопку для завершения работы.");
         Console.ReadKey();
     }
+    #region Нейро параллелелизм
+    public static long CountExistingElements(BlumFilter blum_Filter)
+    {
+        long totalCount = (long)int.MaxValue + 1;
+        const int ChunkSize = 10_000_000;
+        int numberOfChunks = (int)(totalCount / ChunkSize) + 1;
+
+        var chunks = Enumerable.Range(0, numberOfChunks)
+            .Select(chunkIndex =>
+            {
+                long start = (long)chunkIndex * ChunkSize;
+                int count = (int)Math.Min(ChunkSize, totalCount - start);
+                return (Start: start, Count: count);
+            })
+            .Where(c => c.Count > 0)
+            .ToArray();
+        
+        return chunks
+            .AsParallel()
+            .WithDegreeOfParallelism(Environment.ProcessorCount)
+            .Sum(chunk => ProcessChunk(chunk.Start, chunk.Count, blum_Filter));
+    }
+
+    private static int ProcessChunk(long start, int count, BlumFilter blum_Filter)
+    {
+        int localTrueCount = 0;
+        long end = start + count;
+
+        for (long i = start; i < end; i++)
+        {
+            if (blum_Filter.Сheck_element((int)i)) // int.MaxValue помещается в int
+                localTrueCount++;
+        }
+
+        return localTrueCount;
+    }
+    #endregion
 
     private static void Show_Indexes(List<(int, bool)> array)
     {
         ConsoleColor color = Console.BackgroundColor;
         for (int i = 0; i < array.Count; i++)
         {
-            if (array[i].Item2)
-            {
-                Console.BackgroundColor = ConsoleColor.DarkMagenta;
-                Console.Write($"{array[i].Item1,6}");
-            }
-            else
-            {
-                Console.BackgroundColor = ConsoleColor.DarkGreen;
-                Console.Write($"{array[i].Item1,6}");
-            }
-            Console.BackgroundColor = color;
-            Console.Write(" ");
+            Show_Indexes(array[i].Item1, array[i].Item2);
+            //Console.BackgroundColor = color;
+            //Console.Write(" ");
         }
     }
 
@@ -205,12 +249,12 @@ internal class Program
         if (b)
         {
             Console.BackgroundColor = ConsoleColor.DarkMagenta;
-            Console.Write($"{i,6}");
+            Console.Write($"{i,8}");
         }
         else
         {
             Console.BackgroundColor = ConsoleColor.DarkGreen;
-            Console.Write($"{i,6}");
+            Console.Write($"{i,8}");
         }
         Console.BackgroundColor = color;
         Console.Write(" ");

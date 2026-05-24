@@ -32,8 +32,8 @@ namespace Blum_Filter_Library
             this.n = n;
             this.e = e;
             m = (int)((0.0 - n * Math.Log(e)) / (Math.Log(2.0) * Math.Log(2.0)));
-            k = (int)((0.0 - Math.Log(e)) / Math.Log(2.0));
-            k = (int)((double)m / n * Math.Log(2.0));
+            k = (int)(-Math.Log(e) / Math.Log(2.0));
+            
             if (k < 1)
             {
                 k = 1;

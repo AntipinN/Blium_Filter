@@ -5,6 +5,7 @@ namespace Universal_Hash_Func_Generator
 {
     public class Hash_Func_Generator: IHashFuncGenerator
     {
+        public 
         long p = 2147483659;
         int Prime_Default_Amount = (int)1e5;
         public List<IHashFunction> Generate_Hash_Func(int amount)
