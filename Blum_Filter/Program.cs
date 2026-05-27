@@ -157,6 +157,8 @@ internal class Program
                         list_Of_Added_Numbers = new HashSet<int>();
 
                         Random rnd = new Random();
+
+                        Console.WriteLine($"Начали генерацию {n} элементов");
                         for (int j = 0; j < n; j++)
                         {
                             int tmp = rnd.Next();
@@ -168,9 +170,11 @@ internal class Program
                             blum_Filter.Add_Array(tmp);
                         }
                         Console.WriteLine();
+                        Console.WriteLine($"Запускаем тестирование\n");
                         int counter = (int)(CountExistingElements(blum_Filter) - n);
 
-                        Console.WriteLine($"Вероятность коллизии в массиве длины m = {blum_Filter.m},\n" +
+                        Console.WriteLine($"Готово!\n" +
+                            $"Вероятность коллизии в массиве длины m = {blum_Filter.m},\n" +
                             $" количестве внесённых элементов n = {n},\n" +
                             $"  мощности множества ключей 2^31\n" +
                             $"    желаемой вероятности коллизии e = {e}\n " +
